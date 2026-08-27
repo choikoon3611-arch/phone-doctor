@@ -111,8 +111,10 @@ export function useWebRTCSenior() {
           setState('disconnected')
         }
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Start help error:', err)
+      const msg = err?.message || err?.name || JSON.stringify(err) || '알 수 없는 오류'
+      alert('화면 공유 실패: ' + msg)
       setState('error')
     }
   }, [])
